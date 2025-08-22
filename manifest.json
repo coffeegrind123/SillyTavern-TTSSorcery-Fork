@@ -1,0 +1,11 @@
+{
+    "display_name": "TTSSorcery",
+    "requires": [],
+    "optional": [],
+    "js": "index.js",
+    "css": "style.css",
+    "author": "",
+    "version": "1.0",
+    "homePage": "https://gitgud.io/fdsar32423/ttssorcery",
+    "auto_update": true
+}
