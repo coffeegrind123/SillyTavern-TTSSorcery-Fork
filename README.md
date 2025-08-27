@@ -1,6 +1,8 @@
-# TTSSorcery
+# TTSSorcery Fork - Local Docker API Optimized
 
-TTSSorcery is an extension that can generate TTS with multiple speakers and emotions all in one message. Since it uses Sorcery's method of executing actions the moment of the stream, that means TTS with multiple character voices with various audio variants/emotions can be genrated while the response is streaming. It uses custom text to speech from Zyphra's API (free) but with added features. The extension uses direct code and prompts from https://github.com/p-e-w/sorcery/tree/master
+TTSSorcery is an extension that can generate TTS with multiple speakers and emotions all in one message. Since it uses Sorcery's method of executing actions the moment of the stream, that means TTS with multiple character voices with various audio variants/emotions can be generated while the response is streaming. 
+
+**This fork is optimized for local Docker API usage** with the [Zonos API Docker](https://github.com/coffeegrind123/zonos-api-docker) while maintaining compatibility with Zyphra's cloud API. The extension uses direct code and prompts from https://github.com/p-e-w/sorcery/tree/master
 
 This is NOT integrated/compatible with sillytavern's built in text to speech, and only works with chat completions for now
 
@@ -13,11 +15,32 @@ This is NOT integrated/compatible with sillytavern's built in text to speech, an
 
 ## How do i set it up
 
-1. Get a zyphra api key (free tier gives 100 minutes/month)
-2. Add your api key in the extension settings
+### Option 1: Local Docker API (Recommended)
+
+1. Set up the [Zonos API Docker](https://github.com/coffeegrind123/zonos-api-docker):
+   ```bash
+   git clone https://github.com/coffeegrind123/zonos-api-docker
+   cd zonos-api-docker
+   docker-compose up --build
+   ```
+
+2. Configure the extension settings:
+   - ✅ Check "Use Local Zonos API"
+   - Set "Local API URL" to: `http://localhost:8181`
+   - **Leave "Zyphra API Key" field empty** (not required for local usage)
+
 3. Upload at least one voice sample for the Narrator
 4. Add character voices as needed
 5. Enable the extension
+
+### Option 2: Zyphra Cloud API
+
+1. Get a zyphra api key (free tier gives 100 minutes/month)
+2. Add your api key in the extension settings
+3. **Uncheck** "Use Local Zonos API"
+4. Upload at least one voice sample for the Narrator
+5. Add character voices as needed
+6. Enable the extension
 
 ## Features
 
@@ -51,13 +74,25 @@ The AI adds emotion values to each dialogue segment using these 8 emotions:
 
 This is included in every dialogue zonos tts generates
 
+## Fork Improvements
+
+This fork includes several improvements over the original:
+
+- **Local API Support**: No API key required when using local Docker API
+- **Automatic Model Mapping**: Handles model name differences between extension and API
+- **CORS Support**: Properly configured for browser-based requests
+- **Improved Error Handling**: Better error messages and validation
+- **Default Local Settings**: Preconfigured for local usage (port 8181)
+
 ## Tips
 
-- Use hybrid model over transformer, it has better voice quality
+- **Local API Users**: The local Docker API supports both transformer and hybrid models
+- **Cloud API Users**: Use hybrid model over transformer, it has better voice quality
 - Only works with chat completion (not text completion)
 - Auto generation only works with streaming enabled
 - 10-30 second audio samples work best
 - Avoid background noise in your voice samples, if you cant, enable speaker denoising
+- **Local API Benefits**: No API key required, unlimited usage, faster response times, privacy
 
 ## Issues
 
