@@ -5,6 +5,28 @@ import { promptManager } from "../../../openai.js";
 import { eventSource, event_types, streamingProcessor } from "../../../../script.js";
 import { Handlebars } from "../../../../lib.js";
 
+// Proxy function to handle CORS for external APIs
+async function proxyFetch(url, options) {
+    if (url.includes('localhost') || url.includes('127.0.0.1')) {
+        // Local API - direct fetch
+        return fetch(url, options);
+    } else {
+        // External API - use SillyTavern's proxy to avoid CORS
+        return fetch('/api/proxy/url', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                url: url,
+                method: options.method || 'GET',
+                headers: options.headers || {},
+                body: options.body
+            })
+        });
+    }
+}
+
 const { callPopup } = getContext();
 
 const extensionName = "TTSSorcery";
@@ -827,7 +849,7 @@ function loadAndPlaySegment(index) {
         ? `${extension_settings[extensionName].local_api_url}/v1/audio/text-to-speech`
         : "https://api.zyphra.com/v1/audio/text-to-speech";
     
-    fetch(apiUrl, {
+    proxyFetch(apiUrl, {
         method: "POST",
         headers: extension_settings[extensionName].use_local_api 
             ? {
@@ -996,7 +1018,7 @@ function preloadTtsSegment(index) {
         ? `${extension_settings[extensionName].local_api_url}/v1/audio/text-to-speech`
         : "https://api.zyphra.com/v1/audio/text-to-speech";
     
-    fetch(apiUrl, {
+    proxyFetch(apiUrl, {
         method: "POST",
         headers: extension_settings[extensionName].use_local_api 
             ? {
