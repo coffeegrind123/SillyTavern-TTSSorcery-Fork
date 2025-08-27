@@ -1,4 +1,4 @@
-# TTSSorcery Fork - Local Docker API Optimized
+# TTSSorcery Fork
 
 TTSSorcery is an extension that can generate TTS with multiple speakers and emotions all in one message. Since it uses Sorcery's method of executing actions the moment of the stream, that means TTS with multiple character voices with various audio variants/emotions can be generated while the response is streaming. 
 
