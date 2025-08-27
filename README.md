@@ -74,16 +74,6 @@ The AI adds emotion values to each dialogue segment using these 8 emotions:
 
 This is included in every dialogue zonos tts generates
 
-## Fork Improvements
-
-This fork includes several improvements over the original:
-
-- **Local API Support**: No API key required when using local Docker API
-- **Automatic Model Mapping**: Handles model name differences between extension and API
-- **CORS Support**: Properly configured for browser-based requests
-- **Improved Error Handling**: Better error messages and validation
-- **Default Local Settings**: Preconfigured for local usage (port 8181)
-
 ## Tips
 
 - **Local API Users**: The local Docker API supports both transformer and hybrid models
