@@ -1,11 +1,11 @@
 {
-    "display_name": "TTSSorcery",
+    "display_name": "TTSSorcery Fork",
     "requires": [],
     "optional": [],
     "js": "index.js",
     "css": "style.css",
-    "author": "",
-    "version": "1.0",
-    "homePage": "https://gitgud.io/fdsar32423/ttssorcery",
-    "auto_update": true
+    "author": "Fixed for local Zonos API",
+    "version": "1.1",
+    "homePage": "https://github.com/coffeegrind123/SillyTavern-TTSSorcery-Fork",
+    "auto_update": false
 }

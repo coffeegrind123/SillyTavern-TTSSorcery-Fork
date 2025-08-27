@@ -25,7 +25,7 @@ const defaultSettings = {
     auto_generation: false,
     force_neutral_narrator: false,
     use_local_api: true,
-    local_api_url: "http://localhost:8001"
+    local_api_url: "http://localhost:8181"
 };
 
 function generateCharacterList() {
@@ -780,7 +780,10 @@ function loadAndPlaySegment(index) {
     }
     
     const apiKey = extension_settings[extensionName].api_key;
-    if (!apiKey) {
+    const useLocalApi = extension_settings[extensionName].use_local_api;
+    
+    // Only require API key for cloud API, not for local API
+    if (!apiKey && !useLocalApi) {
         console.error("No API key set for TTSSorcery");
         toastr.error("Please set your Zyphra API key in TTSSorcery settings");
         resetTtsQueue(true);
@@ -951,7 +954,10 @@ function preloadTtsSegment(index) {
     }
     
     const apiKey = extension_settings[extensionName].api_key;
-    if (!apiKey) {
+    const useLocalApi = extension_settings[extensionName].use_local_api;
+    
+    // Only require API key for cloud API, not for local API
+    if (!apiKey && !useLocalApi) {
         console.error("No API key set for TTSSorcery preload");
         return;
     }
