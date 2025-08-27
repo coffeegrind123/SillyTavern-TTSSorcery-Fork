@@ -825,7 +825,7 @@ function loadAndPlaySegment(index) {
     
     const apiUrl = extension_settings[extensionName].use_local_api 
         ? `${extension_settings[extensionName].local_api_url}/v1/audio/text-to-speech`
-        : "http://api.zyphra.com/v1/audio/text-to-speech";
+        : "https://api.zyphra.com/v1/audio/text-to-speech";
     
     fetch(apiUrl, {
         method: "POST",
@@ -994,7 +994,7 @@ function preloadTtsSegment(index) {
     
     const apiUrl = extension_settings[extensionName].use_local_api 
         ? `${extension_settings[extensionName].local_api_url}/v1/audio/text-to-speech`
-        : "http://api.zyphra.com/v1/audio/text-to-speech";
+        : "https://api.zyphra.com/v1/audio/text-to-speech";
     
     fetch(apiUrl, {
         method: "POST",
