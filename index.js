@@ -11,19 +11,10 @@ async function proxyFetch(url, options) {
         // Local API - direct fetch
         return fetch(url, options);
     } else {
-        // External API - use SillyTavern's proxy to avoid CORS
-        return fetch('/api/proxy/url', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                url: url,
-                method: options.method || 'GET',
-                headers: options.headers || {},
-                body: options.body
-            })
-        });
+        // External API - use SillyTavern's CORS proxy
+        // The proxy expects the URL as a path parameter: /proxy/https://api.zyphra.com/v1/audio/text-to-speech
+        const proxyUrl = '/proxy/' + encodeURIComponent(url);
+        return fetch(proxyUrl, options);
     }
 }
 
